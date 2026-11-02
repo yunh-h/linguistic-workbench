@@ -1,0 +1,14 @@
+[
+  {"language":"fr","text":"J'en ai acheté trois.","phenomenon":"en clitic 與直引號"},
+  {"language":"fr","text":"Je vais au marché.","phenomenon":"au 縮合形式"},
+  {"language":"fr","text":"Je lui en parle.","phenomenon":"複數 clitic"},
+  {"language":"fr","text":"Il y en a trois.","phenomenon":"y/en 共現"},
+  {"language":"fr","text":"Elle est arrivée.","phenomenon":"auxiliary 與性數一致"},
+  {"language":"fr","text":"Elles ont acheté des livres.","phenomenon":"複合過去式"},
+  {"language":"ja","text":"昨日、本を三冊買った。","phenomenon":"數量詞、助詞、活用"},
+  {"language":"ja","text":"私は学生です。","phenomenon":"主題標記"},
+  {"language":"ja","text":"私が読みました。","phenomenon":"格助詞與禮貌形式"},
+  {"language":"ja","text":"本を読んでいます。","phenomenon":"進行／結果狀態構式"},
+  {"language":"ja","text":"食べた。","phenomenon":"省略主語"},
+  {"language":"ja","text":"東京で友達に会った。","phenomenon":"多個格助詞"}
+]

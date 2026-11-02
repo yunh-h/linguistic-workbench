@@ -1,0 +1,14 @@
+[
+  {"id":"fr-clitic-straight","text":"J'en ai acheté trois.","phenomenon":"en、直引號"},
+  {"id":"fr-au","text":"Je vais au marché.","phenomenon":"一個 au segment 對應 à/le words","expansion":{"surface":"au","forms":["à","le"]}},
+  {"id":"fr-clitics","text":"Je lui en parle.","phenomenon":"lui/en 與動詞 parle"},
+  {"id":"fr-y-en","text":"Il y en a trois.","phenomenon":"y/en 共現"},
+  {"id":"fr-arrival","text":"Elle est arrivée.","phenomenon":"être auxiliary、過去分詞、陰性一致"},
+  {"id":"fr-purchase","text":"Elles ont acheté des livres.","phenomenon":"avoir auxiliary、複數主語"},
+  {"id":"fr-clitic-curly","text":"J’en ai acheté trois.","phenomenon":"彎引號不替換，保留原文位置"},
+  {"id":"fr-du-preposition","text":"Je reviens du marché.","phenomenon":"du 縮合","expansion":{"surface":"du","forms":["de","le"]}},
+  {"id":"fr-du-partitive","text":"Je bois du café.","phenomenon":"partitive du 的實際分析；不強制同一語意"},
+  {"id":"fr-negation","text":"Je n’en veux plus.","phenomenon":"否定、clitic、彎引號"},
+  {"id":"fr-emoji","text":"🍵 « Je vais au marché. »","phenomenon":"emoji、引號與 MWT 原文回映","expansion":{"surface":"au","forms":["à","le"]}},
+  {"id":"fr-combining","text":"  Elle a acheté du café.\n","phenomenon":"分解重音、前後空白；不做 Unicode normalization"}
+]

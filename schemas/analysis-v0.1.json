@@ -1,0 +1,887 @@
+{
+  "$defs": {
+    "AnalysisField_Any_": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/FieldStatus"
+        },
+        "value": {
+          "title": "Value"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "certainty": {
+          "enum": [
+            "unassessed",
+            "tentative",
+            "supported"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "status",
+        "value",
+        "source_ids",
+        "certainty",
+        "reason"
+      ],
+      "title": "AnalysisField[Any]",
+      "type": "object"
+    },
+    "AnalysisField_Dependency_": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/FieldStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Dependency"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "certainty": {
+          "enum": [
+            "unassessed",
+            "tentative",
+            "supported"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "status",
+        "value",
+        "source_ids",
+        "certainty",
+        "reason"
+      ],
+      "title": "AnalysisField[Dependency]",
+      "type": "object"
+    },
+    "AnalysisField_Literal__ADJ____ADP____ADV____AUX____CCONJ____DET____INTJ____NOUN____NUM____PART____PRON____PROPN____PUNCT____SCONJ____SYM____VERB____X___": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/FieldStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "enum": [
+                "ADJ",
+                "ADP",
+                "ADV",
+                "AUX",
+                "CCONJ",
+                "DET",
+                "INTJ",
+                "NOUN",
+                "NUM",
+                "PART",
+                "PRON",
+                "PROPN",
+                "PUNCT",
+                "SCONJ",
+                "SYM",
+                "VERB",
+                "X"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "certainty": {
+          "enum": [
+            "unassessed",
+            "tentative",
+            "supported"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "status",
+        "value",
+        "source_ids",
+        "certainty",
+        "reason"
+      ],
+      "title": "AnalysisField[Literal['ADJ', 'ADP', 'ADV', 'AUX', 'CCONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PART', 'PRON', 'PROPN', 'PUNCT', 'SCONJ', 'SYM', 'VERB', 'X']]",
+      "type": "object"
+    },
+    "AnalysisField_dict_str__list_str___": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/FieldStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "certainty": {
+          "enum": [
+            "unassessed",
+            "tentative",
+            "supported"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "status",
+        "value",
+        "source_ids",
+        "certainty",
+        "reason"
+      ],
+      "title": "AnalysisField[dict[str, list[str]]]",
+      "type": "object"
+    },
+    "AnalysisField_str_": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/FieldStatus"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "certainty": {
+          "enum": [
+            "unassessed",
+            "tentative",
+            "supported"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "status",
+        "value",
+        "source_ids",
+        "certainty",
+        "reason"
+      ],
+      "title": "AnalysisField[str]",
+      "type": "object"
+    },
+    "Annotation": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "lexical_gloss",
+            "translation",
+            "construction"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sentence_id": {
+          "title": "Sentence Id",
+          "type": "string"
+        },
+        "word_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Word Ids",
+          "type": "array"
+        },
+        "language": {
+          "enum": [
+            "en",
+            "zh-TW"
+          ],
+          "title": "Language",
+          "type": "string"
+        },
+        "text": {
+          "$ref": "#/$defs/AnalysisField_str_"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "sentence_id",
+        "word_ids",
+        "language",
+        "text"
+      ],
+      "title": "Annotation",
+      "type": "object"
+    },
+    "Capability": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "support": {
+          "enum": [
+            "available",
+            "limited",
+            "unsupported"
+          ],
+          "title": "Support",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "name",
+        "support",
+        "reason"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "Dependency": {
+      "additionalProperties": false,
+      "properties": {
+        "head_word_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Head Word Id"
+        },
+        "relation": {
+          "title": "Relation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "head_word_id",
+        "relation"
+      ],
+      "title": "Dependency",
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "enum": [
+            "connection",
+            "timeout",
+            "authentication",
+            "busy",
+            "http",
+            "truncated",
+            "refused",
+            "format",
+            "candidate",
+            "graph",
+            "configuration",
+            "provider",
+            "worker",
+            "skipped"
+          ],
+          "title": "Reason",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "reason",
+        "detail",
+        "retryable"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "Disagreement": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "word_id": {
+          "title": "Word Id",
+          "type": "string"
+        },
+        "field": {
+          "enum": [
+            "lemma",
+            "upos",
+            "morphology",
+            "dependency"
+          ],
+          "title": "Field",
+          "type": "string"
+        },
+        "selected": {
+          "$ref": "#/$defs/AnalysisField_Any_"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/AnalysisField_Any_"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "resolution": {
+          "enum": [
+            "retain_parser",
+            "unresolved"
+          ],
+          "title": "Resolution",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "word_id",
+        "field",
+        "selected",
+        "alternatives",
+        "resolution",
+        "reason"
+      ],
+      "title": "Disagreement",
+      "type": "object"
+    },
+    "FieldStatus": {
+      "enum": [
+        "present",
+        "unknown",
+        "not_applicable",
+        "unsupported"
+      ],
+      "title": "FieldStatus",
+      "type": "string"
+    },
+    "Input": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "language": {
+          "enum": [
+            "fr",
+            "ja",
+            "en"
+          ],
+          "title": "Language",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "language"
+      ],
+      "title": "Input",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "span": {
+          "$ref": "#/$defs/Span"
+        },
+        "surface": {
+          "title": "Surface",
+          "type": "string"
+        },
+        "word_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Word Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "span",
+        "surface",
+        "word_ids"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "Sentence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "span": {
+          "$ref": "#/$defs/Span"
+        },
+        "segments": {
+          "items": {
+            "$ref": "#/$defs/Segment"
+          },
+          "title": "Segments",
+          "type": "array"
+        },
+        "words": {
+          "items": {
+            "$ref": "#/$defs/Word"
+          },
+          "title": "Words",
+          "type": "array"
+        },
+        "dependency_status": {
+          "enum": [
+            "complete",
+            "partial",
+            "unavailable"
+          ],
+          "title": "Dependency Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "span",
+        "segments",
+        "words",
+        "dependency_status"
+      ],
+      "title": "Sentence",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "parser",
+            "resource",
+            "rule",
+            "llm"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Locator"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "version",
+        "locator",
+        "metadata"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Span",
+      "type": "object"
+    },
+    "Warning": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "sentence_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sentence Id"
+        },
+        "word_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Word Ids",
+          "type": "array"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "diagnostic": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Diagnostic"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "sentence_id",
+        "word_ids",
+        "source_ids"
+      ],
+      "title": "Warning",
+      "type": "object"
+    },
+    "Word": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "segment_id": {
+          "title": "Segment Id",
+          "type": "string"
+        },
+        "form": {
+          "title": "Form",
+          "type": "string"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Span"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lemma": {
+          "$ref": "#/$defs/AnalysisField_str_"
+        },
+        "upos": {
+          "$ref": "#/$defs/AnalysisField_Literal__ADJ____ADP____ADV____AUX____CCONJ____DET____INTJ____NOUN____NUM____PART____PRON____PROPN____PUNCT____SCONJ____SYM____VERB____X___"
+        },
+        "xpos": {
+          "$ref": "#/$defs/AnalysisField_str_"
+        },
+        "morphology": {
+          "$ref": "#/$defs/AnalysisField_dict_str__list_str___"
+        },
+        "dependency": {
+          "$ref": "#/$defs/AnalysisField_Dependency_"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "title": "Extensions",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "segment_id",
+        "form",
+        "span",
+        "lemma",
+        "upos",
+        "xpos",
+        "morphology",
+        "dependency",
+        "extensions"
+      ],
+      "title": "Word",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "analysis_id": {
+      "title": "Analysis Id",
+      "type": "string"
+    },
+    "input": {
+      "$ref": "#/$defs/Input"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "capabilities": {
+      "items": {
+        "$ref": "#/$defs/Capability"
+      },
+      "title": "Capabilities",
+      "type": "array"
+    },
+    "sentences": {
+      "items": {
+        "$ref": "#/$defs/Sentence"
+      },
+      "title": "Sentences",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "annotations": {
+      "items": {
+        "$ref": "#/$defs/Annotation"
+      },
+      "title": "Annotations",
+      "type": "array"
+    },
+    "disagreements": {
+      "items": {
+        "$ref": "#/$defs/Disagreement"
+      },
+      "title": "Disagreements",
+      "type": "array"
+    },
+    "warnings": {
+      "items": {
+        "$ref": "#/$defs/Warning"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "analysis_id",
+    "input",
+    "status",
+    "capabilities",
+    "sentences",
+    "sources",
+    "annotations",
+    "disagreements",
+    "warnings"
+  ],
+  "title": "Analysis",
+  "type": "object"
+}
+

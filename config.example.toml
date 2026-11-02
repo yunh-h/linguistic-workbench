@@ -1,0 +1,16 @@
+# Copy to config.local.toml. This file contains examples, never credentials.
+# Existing shell environment variables override [environment].
+[server]
+host = "127.0.0.1"
+port = 8000
+
+[environment]
+# Relative paths are resolved against the project, not your terminal directory.
+WORKBENCH_DB_PATH = "data/workbench.sqlite3"
+WORKBENCH_STANZA_DIR = "data/models/stanza"
+OMP_NUM_THREADS = "2"
+MKL_NUM_THREADS = "2"
+WORKBENCH_LLM_PROVIDER = "lmstudio"
+WORKBENCH_LLM_BASE_URL = "http://127.0.0.1:1234/v1"
+# Empty disables LLM. Set qwen/qwen3-14b when LM Studio is configured.
+WORKBENCH_LLM_MODEL = ""

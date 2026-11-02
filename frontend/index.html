@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Linguistic Workbench</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./history.js"></script>
+  <script defer src="./questions.js"></script>
+  <script defer src="./export.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#analysis-form">跳至原文輸入</a>
+  <main class="shell">
+    <header class="app-header">
+      <a class="brand" href="#input">Linguistic Workbench</a>
+      <nav role="tablist" aria-label="主要導覽">
+        <a id="page-tab-input" role="tab" href="#input" aria-controls="page-input" aria-selected="true" data-page="input">輸入</a>
+        <a id="page-tab-analysis" role="tab" href="#analysis" aria-controls="page-analysis" aria-selected="false" tabindex="-1" data-page="analysis">分析</a>
+        <a id="page-tab-history" role="tab" href="#history" aria-controls="page-history" aria-selected="false" tabindex="-1" data-page="history">紀錄 <span id="history-unsaved" class="nav-notice" hidden></span></a>
+      </nav>
+      <span class="edition">語言閱讀工作台 · 0.1</span>
+    </header>
+    <div id="local-file-notice" class="setup-notice" role="status" hidden>
+      你目前開啟的是 HTML 檔案。請先啟動本機服務，再到 <strong>http://127.0.0.1:8000</strong> 使用分析功能。
+    </div>
+    <div id="message" role="status" aria-live="polite"></div>
+    <section id="page-input" class="panel input-panel" role="tabpanel" aria-labelledby="page-tab-input">
+      <div class="heading-row"><h1 id="input-title">輸入一段原文</h1><button id="refresh-models" type="button" class="head-link">重新檢查模型</button></div>
+      <form id="analysis-form">
+        <div class="editor-bar"><div class="language-control"><label for="language">語言</label>
+          <select id="language" name="language"><option value="fr">法文 / Français</option><option value="ja">日文 / 日本語</option><option value="en">英文（基礎分析）</option></select>
+        </div><span id="readiness" class="subtle" role="status"></span></div>
+        <label for="text" class="sr-only">句子或短段落（最多 500 個字元、5 句）</label>
+        <textarea id="text" name="text" rows="3" spellcheck="false" aria-describedby="input-limit">J'en ai acheté trois.</textarea>
+        <div class="form-bottom">
+          <div><label class="toggle"><input id="enrichment" type="checkbox"><span>加入模型詞義與翻譯</span></label><p id="input-limit" class="subtle note">最多 500 個字元 · 5 句</p></div>
+          <button id="submit" type="submit" disabled>分析句子 <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="input-notes"><p class="subtle note">關閉模型補充時只在本機分析；開啟後，原文與分析會送至設定的模型服務。</p><p id="enrichment-provider" class="subtle note" role="status"></p></div>
+      </form>
+    </section>
+    <section id="page-analysis" role="tabpanel" aria-labelledby="page-tab-analysis" hidden>
+      <div id="analysis-empty" class="page-placeholder">
+        <h1>分析工作區</h1><p class="subtle">從輸入頁分析一句話，或從紀錄開啟已有的分析。</p>
+        <button type="button" class="head-link" data-open-input>前往輸入 →</button>
+      </div>
+      <div id="analysis-loading" class="page-placeholder" role="status" hidden>正在準備分析結果…</div>
+    <section id="result" class="results" aria-label="分析結果" hidden>
+      <div class="analysis-context">
+        <div><div class="context-meta"><span id="analysis-language"></span><span id="result-mode" class="badge"></span></div><h2 id="analysis-original"></h2><p id="analysis-count" class="subtle"></p></div>
+        <button id="edit-original" type="button" class="head-link">編輯原文 ↗</button>
+      </div>
+      <div id="history-version-bar" hidden>
+        <label for="history-version-select">分析版本</label><select id="history-version-select"></select>
+        <button id="history-versions-more" type="button" class="head-link" hidden>載入更早版本</button>
+      </div>
+      <div id="warnings"></div>
+      <div class="export-controls">
+        <label><input id="export-details" type="checkbox"> 包含詳細語法分析</label>
+        <button id="copy-analysis" type="button" class="head-link">複製筆記</button>
+        <button id="export-analysis" type="button" class="head-link">下載 Markdown</button>
+        <span id="export-status" role="status"></span>
+      </div>
+      <div class="analysis-toolbar">
+        <nav class="view-tabs" role="tablist" aria-label="分析檢視">
+          <button type="button" id="tab-words" role="tab" aria-controls="view-words" aria-selected="true" data-view="words">逐詞</button>
+          <button type="button" id="tab-syntax" role="tab" aria-controls="view-syntax" aria-selected="false" data-view="syntax" tabindex="-1">句法</button>
+          <button type="button" id="tab-grammar" role="tab" aria-controls="view-grammar" aria-selected="false" data-view="grammar" tabindex="-1">語法說明</button>
+        </nav>
+        <button id="analysis-source" type="button" class="source-open">分析依據 ↗</button>
+      </div>
+      <div class="result-grid">
+        <div class="panel reading-panel">
+          <section id="view-words" role="tabpanel" aria-labelledby="tab-words" tabindex="0">
+            <p class="section-label">原文 / 字面 gloss / 詞性</p>
+            <div id="sentences"></div>
+            <p class="subtle reading-hint">點選詞語查看細節。合併詞可在側欄切換分析單位；「—」表示未提供詞義。</p>
+            <div id="translations"></div>
+          </section>
+          <section id="view-syntax" role="tabpanel" aria-labelledby="tab-syntax" tabindex="0" hidden>
+            <p class="section-label">依存關係 / Parser 分析</p>
+            <p class="subtle">這裡呈現句法關係，不等同於語意角色；點選詞語或中心詞查看細節。</p>
+            <div class="syntax-scroll"><table class="syntax-table"><caption class="sr-only">詞語的依存關係與中心詞</caption><thead><tr><th scope="col">詞語</th><th scope="col">關係</th><th scope="col">中心詞</th></tr></thead><tbody id="syntax-rows"></tbody></table></div>
+          </section>
+          <section id="view-grammar" role="tabpanel" aria-labelledby="tab-grammar" tabindex="0" hidden>
+            <p class="section-label">語法與構式 / 既有註解</p>
+            <div id="constructions"></div>
+          </section>
+        </div>
+        <aside class="inspector" aria-label="詞語詳情">
+          <div class="section-head"><span>選取詞語</span><button id="word-source" type="button" class="source-open" disabled>依據 ↗</button></div>
+          <div id="detail" class="panel detail-panel" aria-live="polite"><p class="subtle">選取原文中的詞語，查看分析與來源。</p></div>
+        </aside>
+      </div>
+      <section class="panel question-panel" aria-labelledby="question-title">
+        <div class="heading-row"><h2 id="question-title">關於這個句子</h2><button id="question-clear" type="button" class="head-link">清除對話／停止等待</button></div>
+        <p id="question-context" class="subtle"></p>
+        <div id="question-messages" aria-live="polite"></div>
+        <form id="question-form">
+          <label for="question-input">向模型追問（最多 1000 字）</label>
+          <textarea id="question-input" rows="2" placeholder="例如：這裡為什麼用這個助詞？"></textarea>
+          <div class="question-bottom"><p class="subtle note">會傳送原文、分析、選取詞語與最近三輪對話。回答不修改分析，也不存入歷史；換句子或重新整理即清除。</p><button id="question-submit" type="submit" class="head-link" disabled>送出追問 →</button></div>
+        </form>
+        <p id="question-status" class="subtle" role="status"></p>
+      </section>
+    </section>
+    </section>
+    <section id="page-history" class="panel history-panel" role="tabpanel" aria-labelledby="page-tab-history" hidden>
+      <div class="heading-row"><h2 id="history-title">查過的句子</h2><div class="history-actions"><button id="history-refresh" type="button" class="head-link">重新整理紀錄</button><button id="history-clear" type="button" class="head-link">清除全部紀錄</button></div></div>
+      <label class="toggle"><input id="history-enabled" type="checkbox" checked>保存查詢紀錄到本機資料庫</label>
+      <p class="subtle">保留原文與每次分析版本。同一工作台的瀏覽器共用紀錄，聊天不會保存。</p>
+      <div class="export-controls">
+        <label><input id="history-export-details" type="checkbox"> 包含詳細語法分析</label>
+        <button id="history-export-selected" type="button" class="head-link">匯出已選紀錄（0）</button>
+        <button id="history-export-all" type="button" class="head-link">匯出全部紀錄（不限篩選）</button>
+        <span id="history-export-status" role="status"></span>
+      </div>
+      <form id="history-search-form" class="history-search">
+        <label for="history-search" class="sr-only">搜尋原文</label><input id="history-search" type="search" maxlength="500" placeholder="搜尋原文片段">
+        <label for="history-language" class="sr-only">紀錄語言</label><select id="history-language"><option value="">全部語言</option><option value="fr">法文</option><option value="ja">日文</option><option value="en">英文</option></select>
+        <button type="submit" class="head-link">搜尋</button>
+      </form>
+      <p id="history-status" class="subtle" role="status"></p>
+      <button id="history-retry" type="button" class="head-link" hidden>重試保存</button>
+      <p id="history-import-status" class="subtle" role="status"></p>
+      <button id="history-import" type="button" class="head-link" hidden>匯入瀏覽器舊紀錄</button>
+      <button id="history-remove-legacy" type="button" class="head-link" hidden>刪除此瀏覽器舊副本</button>
+      <div id="history-list"></div>
+      <button id="history-more" type="button" class="head-link" hidden>載入更多句子</button>
+    </section>
+    <footer class="app-footer"><span>本機閱讀工作台</span><span>分析是參考，不是定論。來源與缺漏會保留。</span></footer>
+  </main>
+  <dialog id="source-dialog" aria-labelledby="source-title">
+    <div class="drawer-head"><h2 id="source-title">分析依據</h2><button id="close-source" type="button" aria-label="關閉來源">關閉 ×</button></div>
+    <p id="source-context" class="subtle"></p><div id="source-evidence"></div>
+    <p class="source-caveat">Parser 與模型輸出仍可能有誤。列出來源不代表內容已經人工驗證；不會用模型回答覆寫原分析。</p>
+  </dialog>
+</body>
+</html>
